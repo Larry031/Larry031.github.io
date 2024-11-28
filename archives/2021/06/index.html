@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Larry031的博客</title>
+  <title>Archives: 2021/6 | Larry031的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="自动驾驶算法工程师一枚，专注分享一切有趣的技术和玩物">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Larry031的博客">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/archives/2021/06/index.html">
 <meta property="og:site_name" content="Larry031的博客">
 <meta property="og:description" content="自动驾驶算法工程师一枚，专注分享一切有趣的技术和玩物">
 <meta property="og:locale" content="zh_CN">
@@ -155,122 +155,41 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-hello" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/21/hello/">MNSIT</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/21/hello/" class="archive-article-date">
-  	<time datetime="2022-03-21T03:58:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-21</time>
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/06/20/%E8%BD%A6%E9%81%93%E7%BA%BF%E6%8B%9F%E5%90%88/" class="archive-article-date">
+  	<time datetime="2021-06-20T12:18:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-20</time>
 </a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="欢迎来到Larry3301的个人博客，多多指教"><a href="#欢迎来到Larry3301的个人博客，多多指教" class="headerlink" title="欢迎来到Larry3301的个人博客，多多指教"></a>欢迎来到Larry3301的个人博客，多多指教</h2>
-      
+        </div>
+    	 
+        <div class="article-info info-on-right">
+          
+          
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/21/hello/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-车道线拟合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>车道线拟合是根据特定数量的采样点拟合出一条多阶的车道线曲线方程。车道线一般使用三阶或五阶的螺旋线，三阶车道线的表示：<br>$$y&#x3D;a_0+a_1<em>x+a_2</em>x^2+a_3<em>x^3$$<br>车道线拟合实际上是根据m个采样点$(x_1,y_1),(x_2,y_2)…(x_m,y_m)$,拟合出一条n阶多项式曲线方程：<br>$$y(x,A)&#x3D;a_0+a_1</em>x+a_2<em>x^2+a_3</em>x^3+…+a_n<em>x^n&#x3D;\sum_{i&#x3D;0}^{n}{a_i</em>x^i}$$<br>令<br>$$A&#x3D;\begin{bmatrix}<br>    a_0\<br>    a_1\<br>    \vdots\<br>    a_m<br>\end{bmatrix},<br>X&#x3D;\begin{bmatrix}<br>    1 &amp; x_1 &amp; x_1^2 &amp; \cdots &amp; x_1^n\<br>    1 &amp; x_2 &amp; x_2^2 &amp; \cdots &amp; x_2^n\<br>    \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\<br>    1 &amp; x_m &amp; x_m^2 &amp; \cdots &amp; x_m^n<br>\end{bmatrix}<br>$$<br>多项式可表示为：<br>$$y(x,A)&#x3D;xA$$<br>通过设计cost funciton来评价拟合函数的质量，让每个样本点的预测值与目标值(观测值）$t_m$之间的误差最小，使用均方根误差来评价：<br>$$E_{RMS}&#x3D;\sqrt{\frac{E(A^*)}{M}}$$</p>
-<hr>
-<ul>
-<li>最小二乘法</li>
-</ul>
-<p>误差函数为一元二次，其导数为0时可直接求得方程的唯一解，即解析解（不带正则项的解析解）。<br>误差函数为：<br>$$E(A)&#x3D;\frac 1 2 \sum_{m&#x3D;1}^{M}{(y(x_m,A)-t_m)^2} \<br>      &#x3D;\frac 1 2 (XA-T)^{\top}(XA-T)$$<br>对其求导：<br>$$\frac{\partial E(A)}{\partial A}&#x3D;X^{\top}XA-X^{\top}T$$<br>令导数等于0，整理可得：<br>$$A&#x3D;(X^{\top}X)^{-1}X^{\top}T$$</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/20/%E8%BD%A6%E9%81%93%E7%BA%BF%E6%8B%9F%E5%90%88/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -292,9 +211,9 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
