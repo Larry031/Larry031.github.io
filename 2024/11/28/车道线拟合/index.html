@@ -177,10 +177,8 @@ var _hmt = _hmt || [];
       
         <p>车道线拟合是根据特定数量的采样点拟合出一条多阶的车道线曲线方程。车道线一般使用三阶或五阶的螺旋线，三阶车道线的表示：
 <span class="math display">\[y=a_0+a_1*x+a_2*x^2+a_3*x^3\]</span>
-车道线拟合实际上是根据m个采样点<span
-class="math inline">\((x_1,y_1),(x_2,y_2)...(x_m,y_m)\)</span>,拟合出一条n阶多项式曲线方程：
-<span
-class="math display">\[y(x,A)=a_0+a_1*x+a_2*x^2+a_3*x^3+...+a_n*x^n=\sum_{i=0}^{n}{a_i*x^i}\]</span>
+车道线拟合实际上是根据m个采样点<span class="math inline">\((x_1,y_1),(x_2,y_2)...(x_m,y_m)\)</span>,拟合出一条n阶多项式曲线方程：
+<span class="math display">\[y(x,A)=a_0+a_1*x+a_2*x^2+a_3*x^3+...+a_n*x^n=\sum_{i=0}^{n}{a_i*x^i}\]</span>
 令 <span class="math display">\[A=\begin{bmatrix}
     a_0\\
     a_1\\
@@ -193,19 +191,15 @@ X=\begin{bmatrix}
     \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
     1 &amp; x_m &amp; x_m^2 &amp; \cdots &amp; x_m^n
 \end{bmatrix}
-\]</span> 多项式可表示为： <span
-class="math display">\[y(x,A)=xA\]</span> 通过设计cost
-funciton来评价拟合函数质量，让每个样本点的预测值与目标值(观测值）<span
-class="math inline">\(t_m\)</span>之间的误差最小，使用均方根误差来评价：
+\]</span> 多项式可表示为： <span class="math display">\[y(x,A)=xA\]</span> 通过设计cost
+funciton来评价拟合函数质量，让每个样本点的预测值与目标值(观测值）<span class="math inline">\(t_m\)</span>之间的误差最小，使用均方根误差来评价：
 <span class="math display">\[E_{RMS}=\sqrt{\frac{E(A^*)}{M}}\]</span>
 --- - 最小二乘法</p>
 <p>误差函数为一元二次，其导数为0时可直接求得方程的唯一解，即解析解（不带正则项的解析解）。
 误差函数为： <span class="math display">\[E(A)=\frac 1 2
 \sum_{m=1}^{M}{(y(x_m,A)-t_m)^2} \\
-      =\frac 1 2 (XA-T)^{\top}(XA-T)\]</span> 对其求导： <span
-class="math display">\[\frac{\partial E(A)}{\partial
-A}=X^{\top}XA-X^{\top}T\]</span> 令导数等于0，整理可得： <span
-class="math display">\[A=(X^{\top}X)^{-1}X^{\top}T\]</span></p>
+      =\frac 1 2 (XA-T)^{\top}(XA-T)\]</span> 对其求导： <span class="math display">\[\frac{\partial E(A)}{\partial
+A}=X^{\top}XA-X^{\top}T\]</span> 令导数等于0，整理可得： <span class="math display">\[A=(X^{\top}X)^{-1}X^{\top}T\]</span></p>
 
       
 
