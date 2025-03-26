@@ -176,7 +176,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="什么是不足转向梯度">1. 什么是不足转向梯度</h1>
-<p>首先解释一下什么是不足转向(understeer)。既然有不足转向，那么是不是也存在"过度转向(oversteer)"？没错，另外还有"中性转向"。
+<p>首先解释一下什么是不足转向(understeer)。既然有不足转向，那么是不是也存在"过度转向(oversteer)"？没错，另外还有"中性转向"。<br>
 常见汽车测评中的解释是，不足转向即所谓推头，弯道中容易冲出车道。所谓“过度转向”，就是转向太灵活了，弯道中容易侧滑或甩尾。借用下面的图可以较好的理解。</p>
 <p><img src="https://cdn.shopify.com/s/files/1/2567/9064/files/Handling_bias_1024x1024.jpg?v=1522029500"></p>
 <p>那么，为什么不同的车会有不同的转向特性呢？（接下来内容较为硬核，谨慎食用）</p>
@@ -198,10 +198,10 @@ K\frac{a_y}{g} \tag{1}\]</span> <span class="math display">\[K =
 <span class="math inline">\(a_y\)</span> - 侧向加速度<br>
 上式可改写为： <span class="math display">\[
 R= \frac{L}{\delta} + K\frac{u^2}{\delta} = \frac{L+K*u^2}{g\delta}
-\]</span> - <span class="math inline">\(K = 0\)</span>
-中性转向：转向半径与车速无关，只取决于轴距与转角比值，这意味着只要保持方向盘转角不变，无论车速快慢，运动半径都是不变的。
+\]</span> -<span class="math inline">\(K = 0\)</span>
+中性转向：转向半径与车速无关，只取决于轴距与转角比值，这意味着只要保持方向盘转角不变，无论车速快慢，运动半径都是不变的。<br>
 - <span class="math inline">\(K &gt; 0\)</span>
-不足转向：转向半径随着车速的增加而增大，这意味着如果保持方向盘转角不变，车速越大，运动半径也就越大，这个时候就会冲出弯道，即所谓的转向不足。
+不足转向：转向半径随着车速的增加而增大，这意味着如果保持方向盘转角不变，车速越大，运动半径也就越大，这个时候就会冲出弯道，即所谓的转向不足。<br>
 - <span class="math inline">\(K &lt; 0\)</span>
 过度转向：转向半径随着车速的增加而减小，这意味着如果保持方向盘转角不变，车速越大，运动半径越小，此时车辆便会向弯道内偏转，容易造成甩尾。</p>
 <p>所以，不足转向梯度决定了车辆在转弯时的特性，由车辆参数所决定。</p>
@@ -216,10 +216,11 @@ R= \frac{L}{\delta} + K\frac{u^2}{\delta} = \frac{L+K*u^2}{g\delta}
 Least Squares)</a>中给出了很好的解释，通俗易懂，建议全篇背诵！！</p>
 <p>最小二乘法的缺陷： 1. 在实际应用中, 这种直接计算法并不常见,
 主要是因为公式中求逆部分<span class="math inline">\(A=(X^{\top}X)^{-1}X^{\top}\textbf{y}\)</span>的计算量大,
-在样本数据量大时计算量更是明显增大; 2.
-现实生活中,往往出现样本数据可能也并不是一次性给出,
-而是不断给出新的样本数据, 以一种数据流的形式给出样本数据。 3. <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39645262/article/details/125717578">数据饱和现象</a>
-由于我们要做的是不足转向梯度的<strong>在线估计</strong>，数据样本是以数据流给出的，这时候就需要用递归最小二乘。
+在样本数据量大时计算量更是明显增大;<br>
+2. 现实生活中,往往出现样本数据可能也并不是一次性给出,
+而是不断给出新的样本数据, 以一种数据流的形式给出样本数据。<br>
+3. <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39645262/article/details/125717578">数据饱和现象</a><br>
+由于我们要做的是不足转向梯度的<strong>在线估计</strong>，数据样本是以数据流给出的，这时候就需要用递归最小二乘。<br>
 递归最小二乘的公式推导在此不再赘述，直接给出： <span class="math display">\[
 k = \frac{PX_{n+1}}{\lambda+X_{n+1}^{\top}PX_{n+1}}
 \]</span> <span class="math display">\[
@@ -248,7 +249,7 @@ P&#39;=\frac{1}{\lambda}(P-kX_{n+1}^{\top}P)
 <figcaption aria-hidden="true">RLS</figcaption>
 </figure>
 <p>从上图可以看出，随着迭代次数的增加，模型参数会逐渐收敛。在实际工程应用中，可以设置不足转向梯度为观测量，log后观察估计值是否逐渐收敛。</p>
-<p>参考： 1. <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/21033455#:~:text=1%20%E8%BF%87%E5%BC%AF%E6%97%B6%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%89%8D%E8%BD%AE%E8%BD%AE%E8%83%8E%E7%AA%81%E7%A0%B4%E6%91%A9%E6%93%A6%E5%9C%86%EF%BC%8C%E8%80%8C%E5%90%8E%E8%BD%AE%E8%BD%AE%E8%83%8E%E6%B2%A1%E6%9C%89%E7%AA%81%E7%A0%B4%EF%BC%8C%E5%88%99%E5%89%8D%E8%BD%AE%E5%A4%B1%E5%8E%BB%E8%BD%AC%E5%90%91%E8%83%BD%E5%8A%9B%EF%BC%9B%E5%90%8C%E6%97%B6%EF%BC%8C%E7%94%B1%E4%BA%8E%E5%90%8E%E8%BD%AE%E6%9C%AC%E8%BA%AB%E8%BD%AC%E5%90%91%E8%83%BD%E5%8A%9B%E4%B8%8D%E8%B6%B3%EF%BC%8C%E8%BD%A6%E8%BE%86%E6%95%B4%E4%B8%AA%E4%BC%9A%E6%B2%BF%E7%9D%80%E5%BC%AF%E9%81%93%E5%BC%A7%E7%BA%BF%E7%9A%84%E5%88%87%E7%BA%BF%E6%96%B9%E5%90%91%E6%BB%91%E5%87%BA%E5%8E%BB%EF%BC%8C%20%E8%A1%A8%E7%8E%B0%E4%B8%BA%20%E8%BD%AC%E5%90%91%E4%B8%8D%E8%B6%B3%EF%BC%8C%E9%80%9A%E4%BF%97%E6%9D%A5%E8%AF%B4%EF%BC%8C%E5%B0%B1%E6%98%AF%E2%80%9C%E6%8E%A8%E5%A4%B4%E2%80%9D%E3%80%82,%EF%BC%88%E5%8D%B3%E4%BD%BF%E4%B8%80%E4%BA%9B%E9%AB%98%E7%BA%A7%E8%BD%A6%EF%BC%8C%E5%90%8E%E8%BD%AE%E6%9C%89%E4%B8%BB%E5%8A%A8%E8%BD%AC%E5%90%91%EF%BC%8C%E4%BD%86%E8%BD%AC%E5%90%91%E8%A7%92%E5%BA%A6%E4%B9%9F%E5%BE%88%E6%9C%89%E9%99%90%EF%BC%8C%E5%9C%A8%E8%BF%99%E7%A7%8D%E6%9E%81%E9%99%90%E6%83%85%E5%86%B5%E4%B8%8B%E8%B5%B7%E4%B8%8D%E4%BA%86%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%89%202%20%E8%BF%87%E5%BC%AF%E6%97%B6%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%90%8E%E8%BD%AE%E8%BD%AE%E8%83%8E%E7%AA%81%E7%A0%B4%E6%91%A9%E6%93%A6%E5%9C%86%EF%BC%8C%E8%80%8C%E5%89%8D%E8%BD%AE%E8%BD%AE%E8%83%8E%E6%B2%A1%E6%9C%89%E7%AA%81%E7%A0%B4%EF%BC%8C%E5%88%99%E5%90%8E%E8%BD%AE%E5%A4%B1%E5%8E%BB%E8%BD%AC%E5%90%91%E8%83%BD%E5%8A%9B%EF%BC%9B%E6%AD%A4%E6%97%B6%E7%94%B1%E4%BA%8E%E5%89%8D%E8%BD%AE%E8%BF%98%E8%83%BD%E8%BD%AC%E5%90%91%EF%BC%8C%E8%BD%A6%E8%BE%86%E7%9A%84%E8%A1%A8%E7%8E%B0%E5%B0%B1%E6%98%AF%E8%BD%A6%E5%B1%81%E8%82%A1%E4%BC%9A%E6%B2%BF%E7%9D%80%E5%BC%AF%E9%81%93%E5%BC%A7%E7%BA%BF%E7%9A%84%E5%88%87%E7%BA%BF%E6%96%B9%E5%90%91%E6%BB%91%E5%87%BA%E5%8E%BB%EF%BC%8C%E8%80%8C%E8%BD%A6%E5%A4%B4%E5%88%99%E8%BF%98%E8%83%BD%E8%BD%AC%E5%BC%AF%EF%BC%9B%E4%B8%A4%E8%80%85%E5%8F%A0%E5%8A%A0%EF%BC%8C%E8%A1%A8%E7%8E%B0%E4%B8%BA%E8%BD%AC%E5%90%91%E8%BF%87%E5%BA%A6%EF%BC%8C%E9%80%9A%E4%BF%97%E6%9D%A5%E8%AF%B4%EF%BC%8C%E5%B0%B1%E6%98%AF%E2%80%9C%E7%94%A9%E5%B0%BE%E2%80%9D%E3%80%82%203%20%E5%AF%B9%E4%BA%8E%E5%A5%BD%E5%A5%87%E5%BF%83%E5%BC%BA%E7%9A%84%EF%BC%88%E4%B8%8D%E8%A6%81%E5%91%BD%E7%9A%84%EF%BC%89%EF%BC%8C%E8%87%AA%E7%84%B6%E4%B9%9F%E6%83%B3%E7%9F%A5%E9%81%93%E5%89%8D%E5%90%8E%E8%BD%AE%E5%90%8C%E6%97%B6%E9%83%BD%E6%89%93%E6%BB%91%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F">在弯道，前驱车转向不足，后驱车转向过度，原理是什么？怎么处理？</a>
+<p>参考： 1. <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/21033455#:~:text=1%20%E8%BF%87%E5%BC%AF%E6%97%B6%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%89%8D%E8%BD%AE%E8%BD%AE%E8%83%8E%E7%AA%81%E7%A0%B4%E6%91%A9%E6%93%A6%E5%9C%86%EF%BC%8C%E8%80%8C%E5%90%8E%E8%BD%AE%E8%BD%AE%E8%83%8E%E6%B2%A1%E6%9C%89%E7%AA%81%E7%A0%B4%EF%BC%8C%E5%88%99%E5%89%8D%E8%BD%AE%E5%A4%B1%E5%8E%BB%E8%BD%AC%E5%90%91%E8%83%BD%E5%8A%9B%EF%BC%9B%E5%90%8C%E6%97%B6%EF%BC%8C%E7%94%B1%E4%BA%8E%E5%90%8E%E8%BD%AE%E6%9C%AC%E8%BA%AB%E8%BD%AC%E5%90%91%E8%83%BD%E5%8A%9B%E4%B8%8D%E8%B6%B3%EF%BC%8C%E8%BD%A6%E8%BE%86%E6%95%B4%E4%B8%AA%E4%BC%9A%E6%B2%BF%E7%9D%80%E5%BC%AF%E9%81%93%E5%BC%A7%E7%BA%BF%E7%9A%84%E5%88%87%E7%BA%BF%E6%96%B9%E5%90%91%E6%BB%91%E5%87%BA%E5%8E%BB%EF%BC%8C%20%E8%A1%A8%E7%8E%B0%E4%B8%BA%20%E8%BD%AC%E5%90%91%E4%B8%8D%E8%B6%B3%EF%BC%8C%E9%80%9A%E4%BF%97%E6%9D%A5%E8%AF%B4%EF%BC%8C%E5%B0%B1%E6%98%AF%E2%80%9C%E6%8E%A8%E5%A4%B4%E2%80%9D%E3%80%82,%EF%BC%88%E5%8D%B3%E4%BD%BF%E4%B8%80%E4%BA%9B%E9%AB%98%E7%BA%A7%E8%BD%A6%EF%BC%8C%E5%90%8E%E8%BD%AE%E6%9C%89%E4%B8%BB%E5%8A%A8%E8%BD%AC%E5%90%91%EF%BC%8C%E4%BD%86%E8%BD%AC%E5%90%91%E8%A7%92%E5%BA%A6%E4%B9%9F%E5%BE%88%E6%9C%89%E9%99%90%EF%BC%8C%E5%9C%A8%E8%BF%99%E7%A7%8D%E6%9E%81%E9%99%90%E6%83%85%E5%86%B5%E4%B8%8B%E8%B5%B7%E4%B8%8D%E4%BA%86%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%89%202%20%E8%BF%87%E5%BC%AF%E6%97%B6%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%90%8E%E8%BD%AE%E8%BD%AE%E8%83%8E%E7%AA%81%E7%A0%B4%E6%91%A9%E6%93%A6%E5%9C%86%EF%BC%8C%E8%80%8C%E5%89%8D%E8%BD%AE%E8%BD%AE%E8%83%8E%E6%B2%A1%E6%9C%89%E7%AA%81%E7%A0%B4%EF%BC%8C%E5%88%99%E5%90%8E%E8%BD%AE%E5%A4%B1%E5%8E%BB%E8%BD%AC%E5%90%91%E8%83%BD%E5%8A%9B%EF%BC%9B%E6%AD%A4%E6%97%B6%E7%94%B1%E4%BA%8E%E5%89%8D%E8%BD%AE%E8%BF%98%E8%83%BD%E8%BD%AC%E5%90%91%EF%BC%8C%E8%BD%A6%E8%BE%86%E7%9A%84%E8%A1%A8%E7%8E%B0%E5%B0%B1%E6%98%AF%E8%BD%A6%E5%B1%81%E8%82%A1%E4%BC%9A%E6%B2%BF%E7%9D%80%E5%BC%AF%E9%81%93%E5%BC%A7%E7%BA%BF%E7%9A%84%E5%88%87%E7%BA%BF%E6%96%B9%E5%90%91%E6%BB%91%E5%87%BA%E5%8E%BB%EF%BC%8C%E8%80%8C%E8%BD%A6%E5%A4%B4%E5%88%99%E8%BF%98%E8%83%BD%E8%BD%AC%E5%BC%AF%EF%BC%9B%E4%B8%A4%E8%80%85%E5%8F%A0%E5%8A%A0%EF%BC%8C%E8%A1%A8%E7%8E%B0%E4%B8%BA%E8%BD%AC%E5%90%91%E8%BF%87%E5%BA%A6%EF%BC%8C%E9%80%9A%E4%BF%97%E6%9D%A5%E8%AF%B4%EF%BC%8C%E5%B0%B1%E6%98%AF%E2%80%9C%E7%94%A9%E5%B0%BE%E2%80%9D%E3%80%82%203%20%E5%AF%B9%E4%BA%8E%E5%A5%BD%E5%A5%87%E5%BF%83%E5%BC%BA%E7%9A%84%EF%BC%88%E4%B8%8D%E8%A6%81%E5%91%BD%E7%9A%84%EF%BC%89%EF%BC%8C%E8%87%AA%E7%84%B6%E4%B9%9F%E6%83%B3%E7%9F%A5%E9%81%93%E5%89%8D%E5%90%8E%E8%BD%AE%E5%90%8C%E6%97%B6%E9%83%BD%E6%89%93%E6%BB%91%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F">在弯道，前驱车转向不足，后驱车转向过度，原理是什么？怎么处理？</a><br>
 2. <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Understeer_and_oversteer">Understeer_and_oversteer</a></p>
 
       
