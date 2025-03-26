@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>车道线拟合 | Larry031的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="车道线拟合是根据特定数量的采样点拟合出一条多阶的车道线曲线方程。车道线一般使用三阶或五阶的螺旋线，三阶车道线的表示： $$y&#x3D;a_0+a_1x+a_2x^2+a_3x^3$$ 车道线拟合实际上是根据m个采样点$(x_1,y_1),(x_2,y_2)…(x_m,y_m)$,拟合出一条n阶多项式曲线方程： $$y(x,A)&#x3D;a_0+a_1x+a_2x^2+a_3x^3+…+a_nx">
+  <meta name="description" content="车道线拟合是根据特定数量的采样点拟合出一条多阶的车道线曲线方程。车道线一般使用三阶或五阶的螺旋线，三阶车道线的表示： \[y&#x3D;a_0+a_1*x+a_2*x^2+a_3*x^3\] 车道线拟合实际上是根据m个采样点\((x_1,y_1),(x_2,y_2)...(x_m,y_m)\),拟合出一条n阶多项式曲线方程： \[y(x,A)&#x3D;a_0+a_1*x+a_2*x^2+a_3*x^3+...+a_">
 <meta property="og:type" content="article">
 <meta property="og:title" content="车道线拟合">
 <meta property="og:url" content="http://example.com/2024/11/28/%E8%BD%A6%E9%81%93%E7%BA%BF%E6%8B%9F%E5%90%88/index.html">
 <meta property="og:site_name" content="Larry031的博客">
-<meta property="og:description" content="车道线拟合是根据特定数量的采样点拟合出一条多阶的车道线曲线方程。车道线一般使用三阶或五阶的螺旋线，三阶车道线的表示： $$y&#x3D;a_0+a_1x+a_2x^2+a_3x^3$$ 车道线拟合实际上是根据m个采样点$(x_1,y_1),(x_2,y_2)…(x_m,y_m)$,拟合出一条n阶多项式曲线方程： $$y(x,A)&#x3D;a_0+a_1x+a_2x^2+a_3x^3+…+a_nx">
+<meta property="og:description" content="车道线拟合是根据特定数量的采样点拟合出一条多阶的车道线曲线方程。车道线一般使用三阶或五阶的螺旋线，三阶车道线的表示： \[y&#x3D;a_0+a_1*x+a_2*x^2+a_3*x^3\] 车道线拟合实际上是根据m个采样点\((x_1,y_1),(x_2,y_2)...(x_m,y_m)\),拟合出一条n阶多项式曲线方程： \[y(x,A)&#x3D;a_0+a_1*x+a_2*x^2+a_3*x^3+...+a_">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-28T15:14:41.000Z">
 <meta property="article:modified_time" content="2024-12-02T14:40:33.357Z">
@@ -176,39 +176,30 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <p>车道线拟合是根据特定数量的采样点拟合出一条多阶的车道线曲线方程。车道线一般使用三阶或五阶的螺旋线，三阶车道线的表示：
-$$y&#x3D;a_0+a_1<em>x+a_2</em>x^2+a_3<em>x^3$$
-车道线拟合实际上是根据m个采样点$(x_1,y_1),(x_2,y_2)…(x_m,y_m)$,拟合出一条n阶多项式曲线方程：
-$$y(x,A)&#x3D;a_0+a_1</em>x+a_2<em>x^2+a_3</em>x^3+…+a_n<em>x^n&#x3D;\sum_{i&#x3D;0}^{n}{a_i</em>x^i}$$
-令
-$$A&#x3D;\begin{bmatrix}
-	a_0\
-	a_1\
-	\vdots\
-	a_m
+<span class="math display">\[y=a_0+a_1*x+a_2*x^2+a_3*x^3\]</span>
+车道线拟合实际上是根据m个采样点<span class="math inline">\((x_1,y_1),(x_2,y_2)...(x_m,y_m)\)</span>,拟合出一条n阶多项式曲线方程：
+<span class="math display">\[y(x,A)=a_0+a_1*x+a_2*x^2+a_3*x^3+...+a_n*x^n=\sum_{i=0}^{n}{a_i*x^i}\]</span>
+令 <span class="math display">\[A=\begin{bmatrix}
+    a_0\\
+    a_1\\
+    \vdots\\
+    a_m
 \end{bmatrix},
-X&#x3D;\begin{bmatrix}
-	1 &amp; x_1 &amp; x_1^2 &amp; \cdots &amp; x_1^n\
-	1 &amp; x_2 &amp; x_2^2 &amp; \cdots &amp; x_2^n\
-	\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\
-	1 &amp; x_m &amp; x_m^2 &amp; \cdots &amp; x_m^n
+X=\begin{bmatrix}
+    1 &amp; x_1 &amp; x_1^2 &amp; \cdots &amp; x_1^n\\
+    1 &amp; x_2 &amp; x_2^2 &amp; \cdots &amp; x_2^n\\
+    \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+    1 &amp; x_m &amp; x_m^2 &amp; \cdots &amp; x_m^n
 \end{bmatrix}
-$$
-多项式可表示为：
-$$y(x,A)&#x3D;xA$$
-通过设计cost funciton来评价拟合函数质量，让每个样本点的预测值与目标值(观测值）$t_m$之间的误差最小，使用均方根误差来评价：
-$$E_{RMS}&#x3D;\sqrt{\frac{E(A^*)}{M}}$$</p>
-<hr>
-<ul>
-<li>最小二乘法</li>
-</ul>
+\]</span> 多项式可表示为： <span class="math display">\[y(x,A)=xA\]</span> 通过设计cost
+funciton来评价拟合函数质量，让每个样本点的预测值与目标值(观测值）<span class="math inline">\(t_m\)</span>之间的误差最小，使用均方根误差来评价：
+<span class="math display">\[E_{RMS}=\sqrt{\frac{E(A^*)}{M}}\]</span>
+--- - 最小二乘法</p>
 <p>误差函数为一元二次，其导数为0时可直接求得方程的唯一解，即解析解（不带正则项的解析解）。
-误差函数为：
-$$E(A)&#x3D;\frac 1 2 \sum_{m&#x3D;1}^{M}{(y(x_m,A)-t_m)^2} \
-      &#x3D;\frac 1 2 (XA-T)^{\top}(XA-T)$$
-对其求导：
-$$\frac{\partial E(A)}{\partial A}&#x3D;X^{\top}XA-X^{\top}T$$
-令导数等于0，整理可得：
-$$A&#x3D;(X^{\top}X)^{-1}X^{\top}T$$</p>
+误差函数为： <span class="math display">\[E(A)=\frac 1 2
+\sum_{m=1}^{M}{(y(x_m,A)-t_m)^2} \\
+      =\frac 1 2 (XA-T)^{\top}(XA-T)\]</span> 对其求导： <span class="math display">\[\frac{\partial E(A)}{\partial
+A}=X^{\top}XA-X^{\top}T\]</span> 令导数等于0，整理可得： <span class="math display">\[A=(X^{\top}X)^{-1}X^{\top}T\]</span></p>
 
       
 
