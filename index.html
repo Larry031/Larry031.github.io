@@ -176,7 +176,8 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="什么是不足转向梯度">1. 什么是不足转向梯度</h1>
-<p>css</p>
+<p>首先解释一下什么是不足转向(understeer)。既然有不足转向，那么是不是也存在"过度转向(oversteer)"？没错，另外还有"中性转向"。<br>
+常见汽车测评中的解释是，不足转向即所谓推头，弯道中容易冲出车道。所谓“过度转向”，就是转向太灵活了，弯道中容易侧滑或甩尾。借用下面的图可以较好的理解。</p>
         
           <a class="article-more-a" href="/2025/03/25/%E8%B0%88%E8%B0%88%E4%B8%8D%E8%B6%B3%E8%BD%AC%E5%90%91%E6%A2%AF%E5%BA%A6%E5%8F%8A%E5%85%B6%E4%BC%B0%E8%AE%A1/#more">more >></a>
         
@@ -241,12 +242,11 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>车道线拟合是根据特定数量的采样点拟合出一条多阶的车道线曲线方程。车道线一般使用三阶或五阶的螺旋线，三阶车道线的表示：<br>$$y&#x3D;a_0+a_1<em>x+a_2</em>x^2+a_3<em>x^3$$<br>车道线拟合实际上是根据m个采样点$(x_1,y_1),(x_2,y_2)…(x_m,y_m)$,拟合出一条n阶多项式曲线方程：<br>$$y(x,A)&#x3D;a_0+a_1</em>x+a_2<em>x^2+a_3</em>x^3+…+a_n<em>x^n&#x3D;\sum_{i&#x3D;0}^{n}{a_i</em>x^i}$$<br>令<br>$$A&#x3D;\begin{bmatrix}<br>	a_0\<br>	a_1\<br>	\vdots\<br>	a_m<br>\end{bmatrix},<br>X&#x3D;\begin{bmatrix}<br>	1 &amp; x_1 &amp; x_1^2 &amp; \cdots &amp; x_1^n\<br>	1 &amp; x_2 &amp; x_2^2 &amp; \cdots &amp; x_2^n\<br>	\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\<br>	1 &amp; x_m &amp; x_m^2 &amp; \cdots &amp; x_m^n<br>\end{bmatrix}<br>$$<br>多项式可表示为：<br>$$y(x,A)&#x3D;xA$$<br>通过设计cost funciton来评价拟合函数质量，让每个样本点的预测值与目标值(观测值）$t_m$之间的误差最小，使用均方根误差来评价：</p>
-<h2 id="E-RMS-sqrt-frac-E-A-M"><a href="#E-RMS-sqrt-frac-E-A-M" class="headerlink" title="$$E_{RMS}&#x3D;\sqrt{\frac{E(A^*)}{M}}$$"></a>$$E_{RMS}&#x3D;\sqrt{\frac{E(A^*)}{M}}$$</h2><ul>
-<li>最小二乘法</li>
-</ul>
-<p>误差函数为一元二次，其导数为0时可直接求得方程的唯一解，即解析解（不带正则项的解析解）。<br>误差函数为：<br>$$E(A)&#x3D;\frac 1 2 \sum_{m&#x3D;1}^{M}{(y(x_m,A)-t_m)^2} \<br>      &#x3D;\frac 1 2 (XA-T)^{\top}(XA-T)$$<br>对其求导：<br>$$\frac{\partial E(A)}{\partial A}&#x3D;X^{\top}XA-X^{\top}T$$<br>令导数等于0，整理可得：<br>$$A&#x3D;(X^{\top}X)^{-1}X^{\top}T$$</p>
-
+        <p>车道线拟合是根据特定数量的采样点拟合出一条多阶的车道线曲线方程。
+css</p>
+        
+          <a class="article-more-a" href="/2024/11/28/%E8%BD%A6%E9%81%93%E7%BA%BF%E6%8B%9F%E5%90%88/#more">more >></a>
+        
       
 
       
@@ -295,7 +295,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/21/hello/">MNSIT</a>
+      <a class="article-title" href="/2022/03/21/hello/">welcome！</a>
     </h1>
   
 
@@ -308,7 +308,8 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="欢迎来到Larry3301的个人博客，多多指教"><a href="#欢迎来到Larry3301的个人博客，多多指教" class="headerlink" title="欢迎来到Larry3301的个人博客，多多指教"></a>欢迎来到Larry3301的个人博客，多多指教</h2>
+        <h2 id="欢迎来到larry3301的个人博客多多指教">欢迎来到Larry3301的个人博客，多多指教</h2>
+
       
 
       
