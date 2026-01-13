@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://cdn.shopify.com/s/files/1/2567/9064/files/Handling_bias_1024x1024.jpg?v=1522029500">
 <meta property="og:image" content="http://example.com/2025/03/25/%E8%B0%88%E8%B0%88%E4%B8%8D%E8%B6%B3%E8%BD%AC%E5%90%91%E6%A2%AF%E5%BA%A6%E5%8F%8A%E5%85%B6%E4%BC%B0%E8%AE%A1/03/25/%E8%B0%88%E8%B0%88%E4%B8%8D%E8%B6%B3%E8%BD%AC%E5%90%91%E6%A2%AF%E5%BA%A6%E5%8F%8A%E5%85%B6%E4%BC%B0%E8%AE%A1/RLS.png">
 <meta property="article:published_time" content="2025-03-25T14:44:23.000Z">
-<meta property="article:modified_time" content="2026-01-12T14:38:34.701Z">
+<meta property="article:modified_time" content="2026-01-13T14:40:32.107Z">
 <meta property="article:author" content="Larry">
 <meta property="article:tag" content="自动驾驶规划控制，编程，代码，开源，极客">
 <meta name="twitter:card" content="summary">
@@ -186,8 +186,7 @@ var _hmt = _hmt || [];
 <span id="more"></span>
 
 <p><img src="https://cdn.shopify.com/s/files/1/2567/9064/files/Handling_bias_1024x1024.jpg?v=1522029500"></p>
-<p>那么，为什么不同的车会有不同的转向特性呢？（接下来内容较为硬核，谨慎食用）</p>
-<p>根据汽车动力学中的线性二自由度汽车模型，稳态转向时可推出（具体推导过程可参见<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/book/9454949">Fundamentals of Vehicle Dynamics</a>）：<br>$$\delta &#x3D; \frac{L}{R} + (\frac{W_{fs}}{C_f}-\frac{W_{rs}}{C_r})\frac{u^2}{g<em>R} &#x3D; \frac{L}{R} + K\frac{a_y}{g} \tag{1}$$<br>$$K &#x3D; \frac{W_{fs}}{C_f}-\frac{W_{rs}}{C_r}$$<br>其中：<br>$K$ - <strong>不足转向梯度</strong>(rad&#x2F;g)<br>$\delta$-前轮转向角(r. d)<br>$L$-轴距(m)<br>$R$-转向半径(m)<br>$u$-前进速度(m&#x2F;s)<br>$g$-重力加速度<br>$W_{fs}$-前. 静态载荷(N)<br>$W_{rs}$-. 轴静态载荷(N)<br>$C_r$-两个前轮胎的侧偏刚度（N&#x2F;rad）<br>$C_r$-两个后轮胎的侧偏刚度(N&#x2F;rad)<br>$a_y$ - 侧向加速度<br>上式可改写为：<br>$$<br>R&#x3D; \frac{L}{\delta} + K\frac{u^2}{\delta} &#x3D; \frac{L+K</em>u^2}{g\delta}<br>$$</p>
+<p>那么，为什么不同的车会有不同的转向特性呢？（接下来内容较为硬核，谨慎食用）<br>根据汽车动力学中的线性二自由度汽车模型，稳态转向时可推出（具体推导过程可参见<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/book/9454949">Fundamentals of Vehicle Dynamics</a>）：<br>$$\delta &#x3D; \frac{L}{R} + (\frac{W_{fs}}{C_f}-\frac{W_{rs}}{C_r})\frac{u^2}{g<em>R} &#x3D; \frac{L}{R} + K\frac{a_y}{g} \tag{1}$$<br>$$K &#x3D; \frac{W_{fs}}{C_f}-\frac{W_{rs}}{C_r}$$<br>其中：<br>$K$ - <strong>不足转向梯度</strong>(rad&#x2F;g)<br>$\delta$-前轮转向角(r. d)<br>$L$-轴距(m)<br>$R$-转向半径(m)<br>$u$-前进速度(m&#x2F;s)<br>$g$-重力加速度<br>$W_{fs}$-前. 静态载荷(N)<br>$W_{rs}$-. 轴静态载荷(N)<br>$C_r$-两个前轮胎的侧偏刚度（N&#x2F;rad）<br>$C_r$-两个后轮胎的侧偏刚度(N&#x2F;rad)<br>$a_y$ - 侧向加速度<br>上式可改写为：<br>$$<br>R&#x3D; \frac{L}{\delta} + K\frac{u^2}{\delta} &#x3D; \frac{L+K</em>u^2}{g\delta}<br>$$</p>
 <ol>
 <li>$K &#x3D; 0$ 中性转向：转向半径与车速无关，只取决于轴距与转角比值，这意味着只要保持方向盘转角不变，无论车速快慢，运动半径都是不变的。  </li>
 <li>$K &gt; 0$ 不足转向：转向半径随着车速的增加而增大，这意味着如果保持方向盘转角不变，车速越大，运动半径也就越大，这个时候就会冲出弯道，即所谓的转向不足。  </li>
@@ -203,7 +202,7 @@ var _hmt = _hmt || [];
 <li>现实生活中,往往出现样本数据可能也并不是一次性给出, 而是不断给出新的样本数据, 以一种数据流的形式给出样本数据。  </li>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39645262/article/details/125717578">数据饱和现象</a><br>由于我们要做的是不足转向梯度的<strong>在线估计</strong>，数据样本是以数据流给出的，这时候就需要用递归最小二乘。<br>递归最小二乘的公式推导在此不再赘述，直接给出：<br>$$<br>k &#x3D; \frac{PX_{n+1}}{\lambda+X_{n+1}^{\top}PX_{n+1}}<br>$$<br>$$<br>P’&#x3D;\frac{1}{\lambda}(P-kX_{n+1}^{\top}P)<br>$$<br>$$<br>\mathbf{w’} &#x3D; \mathbf{w} + k(y_{n+1}-X_{n+1}\mathbf{w})<br>$$<br>其中:<br>$P$:逆矩阵.<br>$X_{n+1}$:数据向量.<br>$y_{n+1}$:输出样本.<br>$\lambda$:遗忘因子.<br>$\mathbf{w}$:模型参数.</li>
 </ol>
-<p>这里，我们通过二自由度模型进行建模：<br>$$<br>\delta &#x3D; \frac{L}{R} + K\frac{a_y}{g}<br>$$<br>改写为：<br>$$<br>\delta -  \frac{L}{R}&#x3D;K\frac{a_y}{g} &#x3D; K\cdot\frac{wv}{g}<br>$$<br><strong>输入</strong>为横向加速度$a_y$<br><strong>. 输出样本</strong>为$\delta -  \frac{L}{R}$<br>我们要估计的模型参数$K$，即**. 足转向梯度**。</p>
+<p>这里，我们通过二自由度模型进行建模：<br>$$<br>\delta &#x3D; \frac{L}{R} + K\frac{a_y}{g}<br>$$<br>改写为：<br>$$<br>\delta -  \frac{L}{R}&#x3D;K\frac{a_y}{g} &#x3D; K\cdot\frac{wv}{g}<br>$$<br><strong>输入</strong>为横向加速度$a_y$<br><strong>. 输出样本</strong>为$\delta -  \frac{L}{R}$<br>我们要估计的模型参数$K$，即<strong>不足转向梯度</strong>。</p>
 <p>初始值设置：<br><strong>遗忘因子</strong>$\lambda$设置为0.999<br><strong>模型参数</strong>$\mathbf{w}$不足转向梯度初始值设为2.0（根据车辆类型设置一个一般值,0~3.0）<br><strong>逆矩阵</strong>初始值为$1*1$ 单位矩阵  </p>
 <p>实际应用中，为了不足专项梯度估计的准确性，应设置触发条件，横向加速度可设为（0.3 ~2.5 m&#x2F;s^2），速度大于10kph。</p>
 <p>下面给出python版本的RLS：</p>
